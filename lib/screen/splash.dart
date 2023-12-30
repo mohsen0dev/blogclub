@@ -7,7 +7,8 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 3), () {
+    List test = [1, 2, 3, 4];
+    Future.delayed(const Duration(seconds: 10), () {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
         return const OnBordingScreen();
       }));
@@ -15,6 +16,7 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
+          listItems(list: test),
           Positioned.fill(
               child: Image.asset(
             'assets/img/background/splash.png',
@@ -28,6 +30,27 @@ class SplashScreen extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class listItems extends StatelessWidget {
+  final List list;
+  const listItems({
+    super.key,
+    required this.list,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: list.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Container(
+          color: Colors.red,
+          child: Text(list[index].toString()),
+        );
+      },
     );
   }
 }
