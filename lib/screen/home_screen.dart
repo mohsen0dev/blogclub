@@ -155,47 +155,53 @@ class MyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: double.infinity,
-        padding: const EdgeInsets.fromLTRB(24, 0, 24, 0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Container(
-              width: 90,
-              height: 100,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  image: const DecorationImage(
-                      image: AssetImage(
-                        'assets/img/posts/small/small_post_1.jpg',
-                      ),
-                      fit: BoxFit.fill)),
-              // child: Image.asset(
-              //     'assets/img/posts/small/small_post_1.jpg'),
-            ),
-            Expanded(
-                child: Container(
-              padding: const EdgeInsets.fromLTRB(24, 0, 24, 0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    final post = AppDatabase.posts;
+    return ListView.builder(
+        shrinkWrap: true,
+        itemCount: post.length,
+        itemBuilder: (context, index) {
+          return Container(
+              width: double.infinity,
+              padding: const EdgeInsets.fromLTRB(24, 8, 24, 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(
-                    'BIG DATA',
-                    style: TextStyle(
-                        color: Colors.blueAccent[700],
-                        fontWeight: FontWeight.bold,
-                        fontSize: 17),
+                  Container(
+                    width: 120,
+                    height: 120,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        image: DecorationImage(
+                            image: AssetImage(
+                              'assets/img/posts/small/${post[index].imageFileName}',
+                            ),
+                            fit: BoxFit.fill)),
+                    // child: Image.asset(
+                    //     'assets/img/posts/small/small_post_1.jpg'),
                   ),
-                  const Text(
-                    'why Big Data Needs Think Data?',
-                    style: TextStyle(fontSize: 17),
-                  ),
+                  Expanded(
+                      child: Container(
+                    padding: const EdgeInsets.fromLTRB(24, 0, 24, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          post[index].title,
+                          style: TextStyle(
+                              color: Colors.blueAccent[700],
+                              fontWeight: FontWeight.bold,
+                              fontSize: 17),
+                        ),
+                        const Text(
+                          'why Big Data Needs Think Data?',
+                          style: TextStyle(fontSize: 17),
+                        ),
+                      ],
+                    ),
+                  ))
                 ],
-              ),
-            ))
-          ],
-        ));
+              ));
+        });
   }
 }
 
@@ -220,7 +226,7 @@ class _CategoryListState extends State<CategoryList> {
         onPageChanged: (value) {
           setState(() {
             _pageController =
-                PageController(initialPage: value, viewportFraction: 0.80);
+                PageController(initialPage: value, viewportFraction: 0);
           });
         },
         scrollDirection: Axis.horizontal,
@@ -246,6 +252,7 @@ class _CategoryListState extends State<CategoryList> {
                 ),
               ),
               Container(
+                width: 315,
                 height: 150,
                 decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(

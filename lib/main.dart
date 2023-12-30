@@ -1,4 +1,4 @@
-import 'package:blogclub/screen/home_screen.dart';
+import 'package:blogclub/screen/splash.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         // useMaterial3: true,
         fontFamily: 'Avenir',
       ),
-      home: const HomeScreen(),
+      home: const SplashScreen(),
     );
   }
 }

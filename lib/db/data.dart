@@ -117,7 +117,7 @@ class AppDatabase {
   static List<PostData> get posts {
     return [
       PostData(
-          id: 1,
+          id: 0,
           title: 'BMW M5 Competition Review 2021',
           caption: 'TOP GEAR',
           isBookmarked: false,
@@ -125,7 +125,7 @@ class AppDatabase {
           time: '1hr ago',
           imageFileName: 'small_post_1.jpg'),
       PostData(
-          id: 0,
+          id: 1,
           title: 'MacBook Pro with M1 Pro and M1 Max review',
           caption: 'THE VERGE',
           isBookmarked: false,
